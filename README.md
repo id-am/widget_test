@@ -6,8 +6,6 @@
   <br>
 </h1>
 
-![alt text](widget_test_2.png)
-
 <h4 align="center">Proyecto base de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
 
 <p align="center"> 
@@ -29,10 +27,12 @@ Este proyecto es un ejemplo educativo de cómo implementar pruebas de widgets en
 </p>
 
 ## Topicos
-- Introducción a las pruebas de widgets
-- Estructura del proyecto
-- Conceptos de Testing Demostrados
-- Prácticas demostradas
+- <a href="#introducción-a-las-pruebas-de-widgets">Introducción a las Pruebas de Widgets</a>
+- <a href="#estructura-del-proyecto">Estructura del Proyecto</a>
+- <a href="#organización-de-carpetas">Organización de Carpetas</a>
+- <a href="#patrones-de-organización">Patrones de Organización</a>
+- <a href="#conceptos-de-testing-demostrados">Conceptos de Testing Demostrados</a>
+- <a href="#prácticas-demostradas">Prácticas Demostradas</a>
 
 ## Introducción a las Pruebas de Widgets
 Las pruebas de widgets son una parte esencial del desarrollo en Flutter. Permiten verificar que los widgets se comporten como se espera y que la interfaz de usuario funcione correctamente. Este proyecto incluye ejemplos de cómo realizar pruebas de widgets utilizando el framework de pruebas de Flutter.
@@ -41,12 +41,77 @@ Las pruebas de widgets son una parte esencial del desarrollo en Flutter. Permite
 
 El proyecto contiene 6 páginas principales:
 
-1. **HomePage**: Página principal con navegación a otras páginas
-2. **CounterPage**: Página con un contador interactivo
-3. **ScrollPage**: Página con un ListView para pruebas de scroll
-4. **FormPage**: Página con un formulario para pruebas de validación
-5. **AnimationPage**: Página con animaciones para pruebas de rendimiento
-6. **SettingsPage**: Página de accesibilidad para pruebas de semantica
+1. **HomePage**: Página principal con navegación a otras páginas.
+2. **CounterPage**: Página con un contador interactivo.
+3. **ScrollPage**: Página con un ListView para pruebas de scroll.
+4. **FormPage**: Página con un formulario para pruebas de validación.
+5. **AnimationPage**: Página con animaciones para pruebas de rendimiento.
+6. **SemanticsPage**: Página de accesibilidad para pruebas de semántica.
+
+### Organización de Carpetas
+
+```
+mobile-testing-flutter-widget-test/
+├── lib/                              # Código fuente principal
+│   ├── main.dart                     # Punto de entrada de la aplicación
+│   ├── routes.dart                   # Definición de rutas de navegación
+│   └── pages/                        # Páginas de la aplicación
+│       ├── home_page.dart            # Página principal con navegación
+│       ├── counter_page.dart         # Ejemplo de contador interactivo
+│       ├── scroll_page.dart          # Ejemplo de scroll y listas
+│       ├── form_page.dart            # Ejemplo de validación de formularios
+│       ├── animated_page.dart        # Ejemplo de animaciones
+│       └── semantics_page.dart       # Ejemplo de accesibilidad
+│
+├── test/                             # Pruebas de la aplicación
+│   └── lib/                          # Refleja la estructura de lib/
+│       └── pages/                    # Pruebas de cada página
+│           ├── home_page_test.dart   # Pruebas para HomePage
+│           ├── counter_page_test.dart # Pruebas para CounterPage
+│           ├── scroll_page_test.dart # Pruebas para ScrollPage
+│           ├── form_page_test.dart   # Pruebas para FormPage
+│           ├── animated_page_test.dart # Pruebas para AnimatedPage
+│           └── semantics_page_test.dart # Pruebas para SemanticsPage
+│
+├── assets/                           # Recursos estáticos
+│   └── images/                       # Imágenes utilizadas en la app
+│       └── 150x150.png               # Imagen de ejemplo
+│
+├── android/                          # Configuración específica para Android
+├── ios/                              # Configuración específica para iOS
+├── web/                              # Configuración específica para Web
+├── macos/                            # Configuración específica para macOS
+├── linux/                            # Configuración específica para Linux
+├── windows/                          # Configuración específica para Windows
+│
+├── pubspec.yaml                      # Dependencias y configuración del proyecto
+└── README.md                         # Documentación del proyecto
+```
+
+### Patrones de Organización
+
+#### 1. Estructura Espejo entre Código y Pruebas
+
+Este proyecto implementa una "estructura espejo", donde la organización de las pruebas refleja exactamente la estructura del código fuente:
+
+```
+lib/pages/home_page.dart ↔ test/lib/pages/home_page_test.dart
+```
+
+**Ventajas:**
+- Facilita encontrar rápidamente los tests correspondientes a cada componente
+- Mantiene una correlación clara entre el código y sus pruebas
+- Facilita la navegación para nuevos desarrolladores
+
+#### 2. Relación entre Componentes
+
+```
+main.dart
+   ↓
+[routes.dart] ←→ [Páginas en lib/pages/]
+   ↓                    ↓
+[Renderizado de UI] ← [Tests en test/lib/pages/]
+```
 
 ## Conceptos de Testing Demostrados
 
@@ -144,4 +209,7 @@ flutter test test/lib/pages/home_page_test.dart
 - [Testing Best Practices](https://flutter.dev/docs/testing/best-practices)
 
 ## Roadmap
-Pendiente
+- Unit Testing : Complejidad baja, pruebas de funciones individuales.
+- Widget Testing : Complejidad media, pruebas de widgets individuales.
+- Integration Testing : Complejidad alta, pruebas de la aplicación completa.
+- Golden Testing : Comparación de imágenes para verificar cambios visuales.
